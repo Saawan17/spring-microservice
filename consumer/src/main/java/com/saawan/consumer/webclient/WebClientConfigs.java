@@ -1,21 +1,21 @@
-package com.saawan.consumer.restclient;
+package com.saawan.consumer.webclient;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestClient;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class RestClientConfig {
+public class WebClientConfigs {
 
     @Bean
     @LoadBalanced
-    public RestClient.Builder loadRestClientBuilder(){
-        return RestClient.builder();
+    public WebClient.Builder loadWebClient(){
+        return WebClient.builder();
     }
 
     @Bean
-    public RestClient restClientProvider(RestClient.Builder builder) {
+    public WebClient webClientConfig(WebClient.Builder builder) {
         return builder.baseUrl("http://provider")
                 .build();
     }
